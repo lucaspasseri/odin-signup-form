@@ -1,3 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	min-height: 100%;
+	display: flex;
+}
+
 body {
-	background-color: aqua;
+	margin: 0;
+	display: flex;
+	flex-grow: 1;
+}
+
+.image-holder {
+	width: 40%;
+	background-image: url("forest-path.jpg");
+	background-size: cover;
+}
+
+main {
+	width: 60%;
+	border: 3px solid green;
+	display: flex;
+	flex-direction: column;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 72px;
+
+	li > label {
+		display: flex;
+		flex-direction: column;
+		max-width: 260px;
+	}
+}
+
+.top-container,
+.bottom-container {
+	flex: 1 1 35%;
+	border: 1px solid purple;
+}
+
+.form-container {
+	flex: 1 0 auto;
 }
