@@ -1,13 +1,36 @@
+const isDirty = {
+	"first-name": false,
+	"last-name": false,
+	email: false,
+	"phone-number": false,
+	password: false,
+	"confirm-password": false,
+};
+
 const form = document.querySelector("#new-account-form");
 
 for (let i = 0; i < form.length - 1; i++) {
 	const currInput = form[i];
-	currInput.addEventListener("input", validateInput);
+	currInput.addEventListener("input", validadeAfterInput);
+	currInput.addEventListener("blur", validadeAfterBlur);
 }
 
-function validateInput(event) {
+function validadeAfterBlur(event) {
+	const target = event.target;
+	if (target.value.length > 0) {
+		isDirty[target.id] = true;
+		validateInput(target);
+	}
+}
+
+function validadeAfterInput(event) {
 	const target = event.target;
 
+	if (!isDirty[target.id]) return;
+	validateInput(target);
+}
+
+function validateInput(target) {
 	const valid = target.validity.valid;
 	const span = target.parentNode.querySelector("span span");
 
@@ -16,7 +39,7 @@ function validateInput(event) {
 
 		if (password.value !== target.value) {
 			target.className = "invalid";
-			span.textContent = "O passaword inserido deve ser igual ao anterior.";
+			span.textContent = "O password inserido deve ser igual ao anterior.";
 		} else {
 			target.className = "valid";
 			span.textContent = target.validationMessage;
@@ -30,10 +53,21 @@ function validateInput(event) {
 		target.className = "invalid";
 	}
 
-	span.textContent = target.validationMessage;
+	if (span) {
+		span.textContent = target.validationMessage;
+	}
 }
 
 form.addEventListener("submit", event => {
+	Object.assign(isDirty, {
+		"first-name": true,
+		"last-name": true,
+		email: true,
+		"phone-number": true,
+		password: true,
+		"confirm-password": true,
+	});
+
 	const inputs = [];
 
 	for (let i = 0; i < event.target.length - 1; i++) {
@@ -49,8 +83,9 @@ form.addEventListener("submit", event => {
 
 		if (password.value !== confirmPassword.value) {
 			event.preventDefault();
+			confirmPassword.focus();
 			confirmPassword.className = "invalid";
-			span.textContent = "O passaword inserido deve ser igual ao anterior.";
+			span.textContent = "O password inserido deve ser igual ao anterior.";
 		} else {
 			confirmPassword.className = "valid";
 			span.textContent = confirmPassword.validationMessage;
