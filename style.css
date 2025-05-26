@@ -17,7 +17,7 @@
 }
 
 html {
-	height: 100%;
+	min-height: 100%;
 	display: flex;
 }
 
@@ -25,7 +25,10 @@ body {
 	line-height: 1.5;
 	display: flex;
 	flex-grow: 1;
-	/* flex-direction: column; */
+
+	@media (max-width: 700px) {
+		flex-direction: column;
+	}
 }
 
 a {
@@ -53,14 +56,13 @@ select {
 .image-holder {
 	background-image: url("./imgs/forest-path.jpg");
 	background-size: cover;
-	/* border: 1px solid red; */
 	display: flex;
 	flex: 2 0 calc(100% - var(--content-relative-width));
 	flex-direction: column;
 	color: white;
 
 	header {
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.6);
 		text-align: center;
 		margin-top: 26%;
 		margin-bottom: auto;
@@ -72,14 +74,10 @@ select {
 		padding: 0.3em 0;
 	}
 
-	img {
-		height: 150px;
-	}
-
 	p {
 		text-align: center;
-		padding: 1em;
-		background-color: rgba(0, 0, 0, 0.5);
+		padding: 0.7em;
+		background-color: rgba(0, 0, 0, 0.6);
 	}
 
 	a {
@@ -98,7 +96,6 @@ main {
 .top-container,
 .bottom-container {
 	flex: 1 1 calc((100% - var(--form-relative-width)) / 2);
-	/* border: 1px solid purple; */
 	background-color: #f9fafb;
 }
 
@@ -132,23 +129,19 @@ main {
 			flex-direction: column;
 			width: 40ch;
 			max-width: 60ch;
+			font-size: 0.8em;
+			letter-spacing: 0.1em;
 		}
 
 		input {
 			border: 1px solid #e5e7eb;
-			padding: 0 1ch;
+			padding: 0 1.5ch;
+			font-size: max(16px, 1.4em);
 
 			&:focus {
 				border-color: #8aaae5;
 				box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 			}
-			/* &:invalid {
-				border-color: red;
-			}
-
-			&:valid {
-				border-color: var(--thematic-green);
-			} */
 		}
 
 		span span {
