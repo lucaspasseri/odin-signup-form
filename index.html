@@ -4,13 +4,14 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Odin Store</title>
-		<link rel="stylesheet" href="style.css" />
+		<script src="./app.js" defer></script>
+		<link href="./style.css" rel="stylesheet" />
 	</head>
 	<body>
 		<div class="image-holder">
 			<header>
 				<img
-					src="imgs/odin-lined.png"
+					src="./imgs/odin-lined.png"
 					alt="Odin Logo"
 					width="112.2px"
 					height="150px"
@@ -41,7 +42,7 @@
 			</div>
 			<div class="form-container">
 				<h2>Let's do this!</h2>
-				<form id="new-account-form" action="#" method="get">
+				<form id="new-account-form" action="#" method="get" novalidate>
 					<ul>
 						<li>
 							<label for="first-name">
@@ -58,8 +59,14 @@
 						</li>
 						<li>
 							<label for="email">
-								EMAIL
-								<input id="email" name="email" type="email" />
+								<span>EMAIL * <span class="alert"></span></span>
+								<input
+									id="email"
+									name="email"
+									type="email"
+									autocomplete="username"
+									required
+								/>
 							</label>
 						</li>
 						<li>
@@ -70,17 +77,27 @@
 						</li>
 						<li>
 							<label for="password">
-								PASSWORD
-								<input id="password" name="password" type="password" />
+								<span>PASSWORD * <span class="alert"></span></span>
+								<input
+									id="password"
+									name="password"
+									type="password"
+									minlength="8"
+									autocomplete="new-password"
+									required
+								/>
 							</label>
 						</li>
 						<li>
 							<label for="confirm-password">
-								CONFIRM PASSWORD
+								<span>CONFIRM PASSWORD * <span class="alert"></span></span>
 								<input
 									id="confirm-password"
 									name="confirm-password"
-									type="confirm-password"
+									type="password"
+									minlength="8"
+									autocomplete="new-password"
+									required
 								/>
 							</label>
 						</li>
