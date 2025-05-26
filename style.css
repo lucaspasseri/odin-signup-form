@@ -215,9 +215,7 @@ main {
 }
 
 .invalid {
-	&:invalid {
-		background-color: #f7c5cc;
-	}
+	background-color: #f7c5cc;
 }
 
 .alert {
